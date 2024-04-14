@@ -7,7 +7,7 @@ import com.spldeolin.satisficing.framework.api.ErrorCode;
  *
  * @author Deolin 2023-04-13
  */
-public class BizException extends RuntimeException {
+public class BizException extends BaseException {
 
     private static final long serialVersionUID = -4104806330438981374L;
 

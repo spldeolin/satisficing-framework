@@ -2,13 +2,14 @@ package com.spldeolin.satisficing.framework.app.lock.exception;
 
 
 import org.slf4j.MDC;
+import com.spldeolin.satisficing.framework.app.exception.BaseException;
 
 /**
  * 没有获取到锁
  *
  * @author Deolin 2021-09-27
  */
-public class LockNotAcquiredException extends RuntimeException {
+public class LockNotAcquiredException extends BaseException {
 
     private static final long serialVersionUID = 2312367844604932835L;
 

@@ -6,7 +6,7 @@ package com.spldeolin.satisficing.framework.app.exception;
  *
  * @author Deolin 2023-04-12
  */
-public final class UncheckedException extends RuntimeException {
+public final class UncheckedException extends BaseException {
 
     private static final long serialVersionUID = 2808466052164900942L;
 
