@@ -38,12 +38,12 @@ public class StdLock {
      * - dSync方法本身支持事务
      * </pre>
      *
-     * @param criticalSection 临界区代码，参数类型虽然是Runnable，但是只用于回调run方法，本方法不涉及到多线程
+     * @param criticalSection 临界区代码
      * @param key 分布式锁的key
      * @param waitMillis 等待锁的最大毫数，小于等于0时代表不等待
      * @throws LockNotAcquiredException 没有获取到锁时抛出，如果不捕获，将会被统一异常处理当作"服务异常，请稍后重试"
      */
-    public void dSync(Runnable criticalSection, String key, int waitMillis) throws LockNotAcquiredException {
+    public void dSync(CriticalSection criticalSection, String key, long waitMillis) throws LockNotAcquiredException {
         log.info("StdLock: key={} waitMillis={}", key, waitMillis);
         RLock lock = redissonClient.getLock(key);
         boolean gotcha = false;
@@ -59,10 +59,16 @@ public class StdLock {
         }
 
         try {
-            criticalSection.run();
+            criticalSection.execute();
         } finally {
             lock.unlock();
         }
+    }
+
+    public interface CriticalSection {
+
+        void execute();
+
     }
 
 }
