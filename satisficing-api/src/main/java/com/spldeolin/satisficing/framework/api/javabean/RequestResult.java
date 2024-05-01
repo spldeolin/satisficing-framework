@@ -5,7 +5,6 @@ import com.spldeolin.satisficing.framework.api.ErrorCode;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 请求结果
@@ -14,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Slf4j
 public final class RequestResult<T> {
 
     /**
@@ -40,7 +38,7 @@ public final class RequestResult<T> {
     private RequestResult() {
     }
 
-    public static <T> RequestResult<T> success() {
+    public static RequestResult<Void> success() {
         return success(null);
     }
 
@@ -53,9 +51,6 @@ public final class RequestResult<T> {
     }
 
     public static RequestResult<Void> failure(ErrorCode errorCode, String errorMsg) {
-        if (errorCode.declare() == null) {
-            log.warn("errorCode不应为null");
-        }
         RequestResult<Void> result = new RequestResult<>();
         result.setErrorCode(errorCode);
         result.setErrorMsg(errorMsg);
