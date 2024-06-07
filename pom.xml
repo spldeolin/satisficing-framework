@@ -10,8 +10,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.spldeolin.satisficing.framework</groupId>
-    <artifactId>satisficing-framework</artifactId>
+    <groupId>com.spldeolin.satisficing</groupId>
+    <artifactId>satisficing</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
@@ -22,7 +22,7 @@
     </modules>
 
     <properties>
-        <satisficing-framework.version>0.0.1-SNAPSHOT</satisficing-framework.version>
+        <satisficing.version>0.0.1-SNAPSHOT</satisficing.version>
     </properties>
 
     <dependencyManagement>
@@ -92,24 +92,24 @@
 
             <!-- modules version management -->
             <dependency>
-                <groupId>com.spldeolin.satisficing.framework</groupId>
+                <groupId>com.spldeolin.satisficing</groupId>
                 <artifactId>satisficing-client</artifactId>
-                <version>${satisficing-framework.version}</version>
+                <version>${satisficing.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.spldeolin.satisficing.framework</groupId>
+                <groupId>com.spldeolin.satisficing</groupId>
                 <artifactId>satisficing-service</artifactId>
-                <version>${satisficing-framework.version}</version>
+                <version>${satisficing.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.spldeolin.satisficing.framework</groupId>
+                <groupId>com.spldeolin.satisficing</groupId>
                 <artifactId>satisficing-security-client</artifactId>
-                <version>${satisficing-framework.version}</version>
+                <version>${satisficing.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.spldeolin.satisficing.framework</groupId>
+                <groupId>com.spldeolin.satisficing</groupId>
                 <artifactId>satisficing-security-service</artifactId>
-                <version>${satisficing-framework.version}</version>
+                <version>${satisficing.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

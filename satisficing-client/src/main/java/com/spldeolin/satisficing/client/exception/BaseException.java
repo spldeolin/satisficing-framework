@@ -1,7 +1,7 @@
 package com.spldeolin.satisficing.client.exception;
 
 /**
- * framework中所有异常的基类
+ * satisficing中所有异常的基类
  */
 public abstract class BaseException extends RuntimeException {
 

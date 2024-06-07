@@ -1,9 +1,13 @@
 package com.spldeolin.satisficing.service.config;
 
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.sleuth.instrument.async.TraceableExecutorService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
@@ -26,12 +30,17 @@ public class ThreadPoolConfig {
     @Value("${thread-pool.keep-alive-seconds:60}")
     private Integer keepAliveSeconds;
 
-    @Bean("globalThreadPoolExecutor")
-    public ThreadPoolExecutor threadPoolExecutor() {
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(coreSize, maximumSize, keepAliveSeconds, TimeUnit.SECONDS,
+    @Autowired
+    private BeanFactory beanFactory;
+
+    @Bean("globalThreadPool")
+    public ExecutorService globalThreadPool() {
+        ThreadPoolExecutor tpe = new ThreadPoolExecutor(coreSize, maximumSize, keepAliveSeconds, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<>(queueCapacity), new ThreadPoolExecutor.CallerRunsPolicy());
-        executor.setThreadFactory(new ThreadFactoryBuilder().setNameFormat("global-%d").build());
-        return executor;
+        tpe.setThreadFactory(new ThreadFactoryBuilder().setNameFormat("global-%d").build());
+
+        // integrate with spring cloud sleuth
+        return new TraceableExecutorService(beanFactory, tpe);
     }
 
 }

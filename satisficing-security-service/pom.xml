@@ -4,8 +4,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.spldeolin.satisficing.framework</groupId>
-        <artifactId>satisficing-framework</artifactId>
+        <groupId>com.spldeolin.satisficing</groupId>
+        <artifactId>satisficing</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -13,12 +13,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.spldeolin.satisficing.framework</groupId>
+            <groupId>com.spldeolin.satisficing</groupId>
             <artifactId>satisficing-security-client</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.spldeolin.satisficing.framework</groupId>
+            <groupId>com.spldeolin.satisficing</groupId>
             <artifactId>satisficing-service</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
