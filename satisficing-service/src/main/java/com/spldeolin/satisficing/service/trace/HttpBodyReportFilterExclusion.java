@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Deolin 2020-12-25
  */
-public interface HttpBodyReportExclusionHandle {
+public interface HttpBodyReportFilterExclusion {
 
     boolean isExcluded(HttpServletRequest request);
 

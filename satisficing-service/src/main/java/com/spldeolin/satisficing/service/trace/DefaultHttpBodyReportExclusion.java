@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @author Deolin 2020-12-25
  */
 @Component
-public class DefaultHttpBodyReportExclusionHandle implements HttpBodyReportExclusionHandle {
+public class DefaultHttpBodyReportExclusion implements HttpBodyReportFilterExclusion {
 
     public boolean isExcluded(HttpServletRequest request) {
         String uri = request.getRequestURI();

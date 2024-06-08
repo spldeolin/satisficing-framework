@@ -12,6 +12,7 @@ import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
@@ -28,13 +29,13 @@ import lombok.extern.slf4j.Slf4j;
 public class HttpBodyReportFilter extends OncePerRequestFilter implements Ordered {
 
     @Autowired
-    private HttpBodyReportExclusionHandle requestIgnoreHandleExcluded;
+    private HttpBodyReportFilterExclusion httpBodyReportFilterExclusion;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
         // 过滤规则
-        if (requestIgnoreHandleExcluded.isExcluded(request)) {
+        if (httpBodyReportFilterExclusion.isExcluded(request)) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -59,6 +60,9 @@ public class HttpBodyReportFilter extends OncePerRequestFilter implements Ordere
     }
 
     private String getRawRequestBody(ContentCachingRequestWrapper wrappedRequest) {
+        if (!wrappedRequest.getHeader("Content-Type").contains(MediaType.APPLICATION_JSON_VALUE)) {
+            return "<REQUEST IS NOT JSON>";
+        }
         try {
             // Response Body由客户端提供，所以编码从报文中获取
             String encoding = wrappedRequest.getCharacterEncoding();
@@ -75,6 +79,9 @@ public class HttpBodyReportFilter extends OncePerRequestFilter implements Ordere
     }
 
     private String getRawResponseBody(ContentCachingResponseWrapper wrappedResponse) {
+        if (!wrappedResponse.getHeader("Content-Type").contains(MediaType.APPLICATION_JSON_VALUE)) {
+            return "<RESPONSE NOT JSON>";
+        }
         try {
             String result = IOUtils.toString(wrappedResponse.getContentInputStream(), StandardCharsets.UTF_8);
             wrappedResponse.copyBodyToResponse();
