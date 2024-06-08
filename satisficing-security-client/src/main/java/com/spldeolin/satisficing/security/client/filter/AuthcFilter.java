@@ -16,7 +16,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.HandlerExecutionChain;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.util.ServletRequestPathUtils;
-import com.spldeolin.satisficing.client.javabean.RequestResult;
+import com.spldeolin.satisficing.client.RequestResult;
 import com.spldeolin.satisficing.security.client.client.SsoClient;
 import com.spldeolin.satisficing.security.client.enums.AuthcRule;
 import com.spldeolin.satisficing.security.client.exception.UnauthcRequestException;

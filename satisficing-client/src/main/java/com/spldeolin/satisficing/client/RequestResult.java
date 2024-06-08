@@ -1,7 +1,6 @@
-package com.spldeolin.satisficing.client.javabean;
+package com.spldeolin.satisficing.client;
 
 import org.slf4j.MDC;
-import com.spldeolin.satisficing.client.ErrorCode;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;

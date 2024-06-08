@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageInfo;
-import com.spldeolin.satisficing.client.javabean.RequestResult;
+import com.spldeolin.satisficing.client.RequestResult;
 import com.spldeolin.satisficing.security.service.javabean.req.CreateUserReqDto;
 import com.spldeolin.satisficing.security.service.javabean.req.ListUsersReqDto;
 import com.spldeolin.satisficing.security.service.javabean.req.UpdateUserReqDto;

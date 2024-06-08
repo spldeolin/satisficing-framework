@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import com.spldeolin.satisficing.client.ErrorCode;
-import com.spldeolin.satisficing.client.javabean.RequestResult;
+import com.spldeolin.satisficing.client.RequestResult;
 import com.spldeolin.satisficing.service.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,7 +1,7 @@
 package com.spldeolin.satisficing.service.exception;
 
+import com.spldeolin.satisficing.client.BaseException;
 import com.spldeolin.satisficing.client.ErrorCode;
-import com.spldeolin.satisficing.client.exception.BaseException;
 
 /**
  * 业务异常

@@ -1,6 +1,6 @@
 package com.spldeolin.satisficing.security.client.exception;
 
-import com.spldeolin.satisficing.client.exception.BaseException;
+import com.spldeolin.satisficing.client.BaseException;
 
 /**
  * 未认证的请求

@@ -1,6 +1,6 @@
 package com.spldeolin.satisficing.service.exception;
 
-import com.spldeolin.satisficing.client.exception.BaseException;
+import com.spldeolin.satisficing.client.BaseException;
 
 /**
  * 这是用于对IOException等Checked-Excpetion在进行wrap处理的异常，

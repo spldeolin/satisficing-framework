@@ -2,7 +2,7 @@ package com.spldeolin.satisficing.security.client.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.spldeolin.satisficing.client.javabean.RequestResult;
+import com.spldeolin.satisficing.client.RequestResult;
 import com.spldeolin.satisficing.security.client.javabean.req.IsLoginReqDto;
 import com.spldeolin.satisficing.security.client.javabean.resp.IsLoginRespDto;
 

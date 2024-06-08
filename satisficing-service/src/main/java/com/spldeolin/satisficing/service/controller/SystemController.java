@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Maps;
-import com.spldeolin.satisficing.client.javabean.RequestResult;
+import com.spldeolin.satisficing.client.RequestResult;
 import com.spldeolin.satisficing.service.enumcache.EnumCollector;
 import com.spldeolin.satisficing.service.id.SnowFlake;
 

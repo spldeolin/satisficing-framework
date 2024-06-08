@@ -1,6 +1,6 @@
 package com.spldeolin.satisficing.service.util.exception;
 
-import com.spldeolin.satisficing.client.exception.BaseException;
+import com.spldeolin.satisficing.client.BaseException;
 import com.spldeolin.satisficing.service.util.JsonUtils;
 
 /**

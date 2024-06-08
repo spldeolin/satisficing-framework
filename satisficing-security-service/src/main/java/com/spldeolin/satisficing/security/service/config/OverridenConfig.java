@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import com.spldeolin.satisficing.client.javabean.RequestResult;
+import com.spldeolin.satisficing.client.RequestResult;
 import com.spldeolin.satisficing.security.client.client.SsoClient;
 import com.spldeolin.satisficing.security.client.javabean.req.IsLoginReqDto;
 import com.spldeolin.satisficing.security.client.javabean.resp.IsLoginRespDto;

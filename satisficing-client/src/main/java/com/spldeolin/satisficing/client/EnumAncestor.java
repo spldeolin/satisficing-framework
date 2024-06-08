@@ -1,8 +1,6 @@
 package com.spldeolin.satisficing.client;
 
 
-import com.spldeolin.satisficing.client.javabean.CodeAndTitle;
-
 /**
  * 所有枚举的直接或间接接口
  *
@@ -10,13 +8,6 @@ import com.spldeolin.satisficing.client.javabean.CodeAndTitle;
  * @author Deolin 2020-11-08
  */
 public interface EnumAncestor<C> {
-
-    /**
-     * 转化成Javabean形式
-     */
-    default CodeAndTitle asJavabean() {
-        return new CodeAndTitle(getCode(), getTitle());
-    }
 
     /**
      * 获取枚举的code的方式

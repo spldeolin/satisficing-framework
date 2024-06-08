@@ -4,7 +4,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.spldeolin.satisficing.client.javabean.RequestResult;
+import com.spldeolin.satisficing.client.RequestResult;
 import com.spldeolin.satisficing.security.client.enums.SecurityErrorCode;
 import com.spldeolin.satisficing.security.client.exception.UnauthcRequestException;
 import lombok.extern.slf4j.Slf4j;

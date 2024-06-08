@@ -1,4 +1,4 @@
-package com.spldeolin.satisficing.client.exception;
+package com.spldeolin.satisficing.client;
 
 /**
  * satisficing中所有异常的基类

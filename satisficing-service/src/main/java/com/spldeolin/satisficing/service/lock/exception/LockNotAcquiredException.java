@@ -2,7 +2,7 @@ package com.spldeolin.satisficing.service.lock.exception;
 
 
 import org.slf4j.MDC;
-import com.spldeolin.satisficing.client.exception.BaseException;
+import com.spldeolin.satisficing.client.BaseException;
 
 /**
  * 没有获取到锁
