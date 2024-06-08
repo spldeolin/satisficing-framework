@@ -25,7 +25,7 @@ public class ForceThrowExceptionIfNoHandlerFoundConfig {
     private WebProperties webProperties;
 
     @PostConstruct
-    public void a() {
+    public void throwExceptionIfNoHandlerFound() {
         dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
         webProperties.getResources().setAddMappings(false);
     }
