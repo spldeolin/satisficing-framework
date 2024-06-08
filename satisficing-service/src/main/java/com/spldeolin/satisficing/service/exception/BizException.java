@@ -12,28 +12,28 @@ public class BizException extends BaseException {
 
     private static final long serialVersionUID = -4104806330438981374L;
 
-    private final String errorMessage;
+    private final ErrorCode errorCode;
 
-    /**
-     * 抛出异常时显式指定具体的ErrorMessage
-     */
+    private final String errorMsg;
+
     public BizException(String message) {
         super(message);
-        this.errorMessage = message;
+        this.errorCode = ErrorCode.GENERAL_BIZ_EXCEPTION;
+        this.errorMsg = message;
     }
 
-    /**
-     * 业务异常的errorCode默认为1001，如果需要自定义errorCode，重写这个方法
-     */
-    public ErrorCode errorCode() {
-        return ErrorCode.GENERAL_BIZ_EXCEPTION;
+    public BizException(ErrorCode errorCode, String message) {
+        super(message);
+        this.errorCode = errorCode;
+        this.errorMsg = message;
     }
 
-    /**
-     * 显式指定具体的ErrorMessage
-     */
-    public final String getErrorMessage() {
-        return errorMessage;
+    public final ErrorCode errorCode() {
+        return errorCode;
+    }
+
+    public final String getErrorMsg() {
+        return errorMsg;
     }
 
 }
