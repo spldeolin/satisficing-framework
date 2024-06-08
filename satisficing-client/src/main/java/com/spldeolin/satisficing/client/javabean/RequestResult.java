@@ -50,9 +50,17 @@ public final class RequestResult<T> {
         return result;
     }
 
+    public static RequestResult<?> failure(ErrorCode errorCode) {
+        RequestResult<Void> result = new RequestResult<>();
+        result.setErrorCode(errorCode.code());
+        result.setErrorMsg(errorCode.defaultMsg());
+        result.setTraceId(MDC.get("traceId"));
+        return result;
+    }
+
     public static RequestResult<?> failure(ErrorCode errorCode, String errorMsg) {
         RequestResult<Void> result = new RequestResult<>();
-        result.setErrorCode(errorCode.declare());
+        result.setErrorCode(errorCode.code());
         result.setErrorMsg(errorMsg);
         result.setTraceId(MDC.get("traceId"));
         return result;

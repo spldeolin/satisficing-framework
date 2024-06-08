@@ -81,7 +81,7 @@ public class GlobalExceptionAdvice {
     public RequestResult<?> handle(Throwable e) {
         log.error("WEB请求在服务端发生异常", e);
         return RequestResult.failure(ErrorCode.SERVER_EXCEPTION,
-                String.format("内部错误，请稍后重试（错误代码：%s）", MDC.get("traceId")));
+                String.format("内部错误，请稍后重试（%s）", MDC.get("traceId")));
     }
 
 }
