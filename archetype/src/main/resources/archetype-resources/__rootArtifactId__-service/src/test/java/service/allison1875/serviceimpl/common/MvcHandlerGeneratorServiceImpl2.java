@@ -21,7 +21,7 @@ public class MvcHandlerGeneratorServiceImpl2 extends MvcHandlerGeneratorServiceI
         Type returnType = result.getMvcHandler().getType();
         if (returnType.isVoidType()) {
             returnType.replace(
-                    StaticJavaParser.parseType("com.spldeolin.satisficing.client.javabean.RequestResult<Void>"));
+                    StaticJavaParser.parseType("com.spldeolin.satisficing.client.RequestResult<Void>"));
             result.getMvcHandler().getBody().get().getStatements()
                     .add(StaticJavaParser.parseStatement("return RequestResult.success();"));
         } else {
