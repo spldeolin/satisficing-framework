@@ -58,7 +58,7 @@ public class HttpBodyReportFilter extends OncePerRequestFilter {
     }
 
     private String getRawRequestBody(ContentCachingRequestWrapper wrappedRequest) {
-        if (!wrappedRequest.getHeader("Content-Type").contains(MediaType.APPLICATION_JSON_VALUE)) {
+        if (!wrappedRequest.getHeader(HttpHeaders.CONTENT_TYPE).contains(MediaType.APPLICATION_JSON_VALUE)) {
             return "<REQUEST IS NOT JSON>";
         }
         try {
@@ -80,7 +80,8 @@ public class HttpBodyReportFilter extends OncePerRequestFilter {
 
         try {
             wrappedResponse.copyBodyToResponse();
-            if (!wrappedResponse.getHeader("Content-Type").contains(MediaType.APPLICATION_JSON_VALUE)) {
+            String contentType = wrappedResponse.getHeader(HttpHeaders.CONTENT_TYPE);
+            if (contentType != null && !contentType.contains(MediaType.APPLICATION_JSON_VALUE)) {
                 return "<RESPONSE NOT JSON>";
             }
             String result = IOUtils.toString(wrappedResponse.getContentInputStream(), StandardCharsets.UTF_8);
