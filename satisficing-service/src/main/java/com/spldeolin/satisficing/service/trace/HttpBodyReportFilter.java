@@ -10,7 +10,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -26,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Component
 @Slf4j
-public class HttpBodyReportFilter extends OncePerRequestFilter implements Ordered {
+public class HttpBodyReportFilter extends OncePerRequestFilter {
 
     @Autowired
     private HttpBodyReportFilterExclusion httpBodyReportFilterExclusion;
@@ -54,8 +53,7 @@ public class HttpBodyReportFilter extends OncePerRequestFilter implements Ordere
             // 请求离开时的报告
             log.info("requestLeft-{}-{}-{}-{}\t{}\t{}", request.getRequestURL(), MDC.get("traceId"),
                     System.currentTimeMillis() - start, request.getHeader(HttpHeaders.AUTHORIZATION),
-                    getRawRequestBody(wrappedRequest),
-                    getRawResponseBody(wrappedResponse));
+                    getRawRequestBody(wrappedRequest), getRawResponseBody(wrappedResponse));
         }
     }
 
@@ -79,22 +77,18 @@ public class HttpBodyReportFilter extends OncePerRequestFilter implements Ordere
     }
 
     private String getRawResponseBody(ContentCachingResponseWrapper wrappedResponse) {
-        if (!wrappedResponse.getHeader("Content-Type").contains(MediaType.APPLICATION_JSON_VALUE)) {
-            return "<RESPONSE NOT JSON>";
-        }
+
         try {
-            String result = IOUtils.toString(wrappedResponse.getContentInputStream(), StandardCharsets.UTF_8);
             wrappedResponse.copyBodyToResponse();
+            if (!wrappedResponse.getHeader("Content-Type").contains(MediaType.APPLICATION_JSON_VALUE)) {
+                return "<RESPONSE NOT JSON>";
+            }
+            String result = IOUtils.toString(wrappedResponse.getContentInputStream(), StandardCharsets.UTF_8);
             return result;
         } catch (IOException e) {
             log.error("读取response body失败", e);
             return "";
         }
-    }
-
-    @Override
-    public int getOrder() {
-        return 1001;
     }
 
 }

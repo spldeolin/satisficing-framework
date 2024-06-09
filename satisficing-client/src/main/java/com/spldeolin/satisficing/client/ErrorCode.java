@@ -8,12 +8,22 @@ package com.spldeolin.satisficing.client;
 public interface ErrorCode {
 
     /**
+     * 声明错误码
+     */
+    String code();
+
+    /**
+     * 声明该错误码的默认errorMsg
+     */
+    String defaultMsg();
+
+    /**
      * 非法请求（Not Found、参数不正确、报文不正确等）
      */
     ErrorCode ILLEGAL_REQUEST = new ErrorCode() {
         @Override
         public String code() {
-            return "E400";
+            return "400";
         }
 
         @Override
@@ -28,7 +38,7 @@ public interface ErrorCode {
     ErrorCode SERVER_EXCEPTION = new ErrorCode() {
         @Override
         public String code() {
-            return "E500";
+            return "500";
         }
 
         @Override
@@ -43,7 +53,7 @@ public interface ErrorCode {
     ErrorCode GENERAL_BIZ_EXCEPTION = new ErrorCode() {
         @Override
         public String code() {
-            return "E1001";
+            return "1001";
         }
 
         @Override
@@ -51,15 +61,5 @@ public interface ErrorCode {
             return null;
         }
     };
-
-    /**
-     * 声明错误码
-     */
-    String code();
-
-    /**
-     * 声明该错误码的默认errorMsg
-     */
-    String defaultMsg();
 
 }

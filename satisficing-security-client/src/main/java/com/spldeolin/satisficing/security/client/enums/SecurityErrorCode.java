@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum SecurityErrorCode implements ErrorCode {
 
-    NO_AUTHC("E403", null),
+    NO_AUTHC("403", null),
 
     ;
 
