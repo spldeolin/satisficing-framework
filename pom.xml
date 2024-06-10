@@ -19,6 +19,7 @@
         <module>satisficing-service</module>
         <module>satisficing-security-client</module>
         <module>satisficing-security-service</module>
+        <module>satisficing-based-archetype</module>
     </modules>
 
     <properties>

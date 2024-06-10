@@ -17,7 +17,6 @@ git clone git@github.com:spldeolin/satisficing.git
 mvn istall -f satisficing/pom.xml
 
 # generate the project based on Satisficing
-mvn istall -f satisficing/archetype/pom.xml
 mvn archetype:generate \
     -DarchetypeGroupId=com.spldeolin.satisficing \
     -DarchetypeArtifactId=satisficing-based-archetype \
