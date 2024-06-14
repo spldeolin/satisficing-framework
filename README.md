@@ -2,7 +2,7 @@
 
 > 「 *equivalent of the well-known “good enough”* 」
 
-Satisficing is a Spring Boot-based web framework, which provides some typical modern web development paradigms, integrates some commonly used starters, and includes convenient utilities. Statisficing is committed to helping developers develop web applications that are good, maintainable, and scalable enough with less human and time resources.
+Satisficing is a Spring Boot-based web framework, which provides typical modern web development paradigms, useful starters, and convenient utilities. Statisficing is committed to helping developers develop web applications that are good, maintainable, and scalable enough with less human and time resources.
 
 ## Required
 
