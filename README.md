@@ -14,7 +14,7 @@ Satisficing is a Spring Boot-based web framework, which provides typical modern 
 
 ```shell
 git clone git@github.com:spldeolin/satisficing.git
-mvn istall -f satisficing/pom.xml
+mvn install -f satisficing/pom.xml
 
 # generate the project based on Satisficing
 mvn archetype:generate \
