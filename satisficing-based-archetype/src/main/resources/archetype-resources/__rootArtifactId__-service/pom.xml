@@ -33,19 +33,6 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <!-- https://github.com/spldeolin/allison1875 -->
-        <dependency>
-            <groupId>com.spldeolin.allison1875</groupId>
-            <artifactId>allison1875-all</artifactId>
-            <version>10.1-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- https://github.com/spldeolin/allison1875-support -->
-        <dependency>
-            <groupId>com.spldeolin.allison1875</groupId>
-            <artifactId>allison1875-support</artifactId>
-            <version>5.0</version>
-        </dependency>
     </dependencies>
 
     <build>
