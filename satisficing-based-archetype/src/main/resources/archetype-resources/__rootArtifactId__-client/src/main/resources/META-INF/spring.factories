@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-${package}.client.${upperCamelRootArtifactId}AutoConfig
+${package}.client.${upperCamelRootArtifactId}ClientAutoConfiguration
