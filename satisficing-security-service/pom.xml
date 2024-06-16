@@ -15,12 +15,10 @@
         <dependency>
             <groupId>com.spldeolin.satisficing</groupId>
             <artifactId>satisficing-security-client</artifactId>
-            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.spldeolin.satisficing</groupId>
             <artifactId>satisficing-service</artifactId>
-            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

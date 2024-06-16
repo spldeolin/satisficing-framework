@@ -15,7 +15,6 @@
         <dependency>
             <groupId>com.spldeolin.satisficing</groupId>
             <artifactId>satisficing-client</artifactId>
-            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
