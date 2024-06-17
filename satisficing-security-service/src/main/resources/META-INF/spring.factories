@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.spldeolin.satisficing.security.service.SatisficingSecurityAppAutoConfiguration
+com.spldeolin.satisficing.security.service.SatisficingSecurityServiceAutoConfiguration

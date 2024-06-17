@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @ComponentScan("com.spldeolin.satisficing.security.service")
 @MapperScan("com.spldeolin.satisficing.security.service.mapper")
 @Slf4j
-public class SatisficingSecurityAppAutoConfiguration {
+public class SatisficingSecurityServiceAutoConfiguration {
 
     @PostConstruct
     public void postConstruct() {
