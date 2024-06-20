@@ -6,14 +6,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.spldeolin.satisficing.client.RequestResult;
+import com.spldeolin.satisficing.security.client.annotation.AccessControl;
+import com.spldeolin.satisficing.security.client.annotation.AccessControl.Type;
 import com.spldeolin.satisficing.security.client.annotation.Authc;
 import com.spldeolin.satisficing.security.client.enums.AuthcRule;
 import com.spldeolin.satisficing.security.client.javabean.req.IsLoginReqDto;
 import com.spldeolin.satisficing.security.client.javabean.resp.IsLoginRespDto;
 import com.spldeolin.satisficing.security.service.javabean.req.LoginByCodeReqDto;
 import com.spldeolin.satisficing.security.service.javabean.req.LoginReqDto;
+import com.spldeolin.satisficing.security.service.javabean.resp.GetPublicKeyRespDto;
 import com.spldeolin.satisficing.security.service.javabean.resp.LoginByCodeRespDto;
 import com.spldeolin.satisficing.security.service.javabean.resp.LoginRespDto;
+import com.spldeolin.satisficing.security.service.rsa.RSA;
 import com.spldeolin.satisficing.security.service.service.SsoService;
 
 /**
@@ -23,7 +27,21 @@ import com.spldeolin.satisficing.security.service.service.SsoService;
 public class SsoController {
 
     @Autowired
-    private SsoService loginService;
+    private RSA rsa;
+
+    @Autowired
+    private SsoService ssoService;
+
+    /**
+     * 获取公钥
+     * <p>Allison 1875 Lot No: HT1001S-8D86E744
+     */
+    @PostMapping("getPublicKey")
+    @Authc(AuthcRule.NONE)
+    @AccessControl(Type.SKIP)
+    public RequestResult<GetPublicKeyRespDto> getPublicKey() {
+        return RequestResult.success(new GetPublicKeyRespDto().setPublicKey(rsa.getPublicKey()));
+    }
 
     /**
      * 判断是否已登录，也可用于检查token是否有效（该API不对header中的token进行验证）
@@ -31,7 +49,7 @@ public class SsoController {
     @PostMapping("/isLogin")
     @Authc(AuthcRule.NONE)
     public RequestResult<IsLoginRespDto> isLogin(@RequestBody @Valid IsLoginReqDto req) {
-        return RequestResult.success(loginService.isLogin(req));
+        return RequestResult.success(ssoService.isLogin(req));
     }
 
     /**
@@ -40,7 +58,7 @@ public class SsoController {
     @PostMapping("/login")
     @Authc(AuthcRule.NONE)
     public RequestResult<LoginRespDto> login(@RequestBody @Valid LoginReqDto req) {
-        return RequestResult.success(loginService.login(req));
+        return RequestResult.success(ssoService.login(req));
     }
 
     /**
@@ -49,7 +67,7 @@ public class SsoController {
     @PostMapping("/loginByCode")
     @Authc(AuthcRule.NONE)
     public RequestResult<LoginByCodeRespDto> loginByCode(@RequestBody @Valid LoginByCodeReqDto req) {
-        return RequestResult.success(loginService.loginByCode(req));
+        return RequestResult.success(ssoService.loginByCode(req));
     }
 
     /**
@@ -58,7 +76,7 @@ public class SsoController {
     @PostMapping("/logout")
     @Authc(AuthcRule.ANONYMOUS)
     public RequestResult<Void> logout() {
-        loginService.logout();
+        ssoService.logout();
         return RequestResult.success();
     }
 

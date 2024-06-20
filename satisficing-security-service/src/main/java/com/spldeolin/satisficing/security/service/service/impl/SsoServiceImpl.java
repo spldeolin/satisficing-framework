@@ -1,14 +1,13 @@
 package com.spldeolin.satisficing.security.service.service.impl;
 
-import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.google.common.hash.Hashing;
 import com.spldeolin.satisficing.security.client.exception.UnauthcRequestException;
 import com.spldeolin.satisficing.security.client.javabean.LoginSession;
 import com.spldeolin.satisficing.security.client.javabean.req.IsLoginReqDto;
@@ -19,6 +18,7 @@ import com.spldeolin.satisficing.security.service.javabean.req.LoginReqDto;
 import com.spldeolin.satisficing.security.service.javabean.resp.LoginByCodeRespDto;
 import com.spldeolin.satisficing.security.service.javabean.resp.LoginRespDto;
 import com.spldeolin.satisficing.security.service.mapper.UserMapper;
+import com.spldeolin.satisficing.security.service.rsa.RSA;
 import com.spldeolin.satisficing.security.service.service.SsoService;
 import com.spldeolin.satisficing.service.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +36,9 @@ public class SsoServiceImpl implements SsoService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RSA rsa;
 
     @Autowired
     private RedissonClient redissonClient;
@@ -111,8 +114,8 @@ public class SsoServiceImpl implements SsoService {
     }
 
     private boolean matchPassword(String password, UserEntity user) {
-        return Hashing.sha256().hashString(password + user.getSalt(), StandardCharsets.UTF_8).toString()
-                .equals(user.getPassword());
+        password = rsa.decrypt(password);
+        return new BCryptPasswordEncoder().matches(password, user.getPassword());
     }
 
     private LoginSession parseToken(String token) {

@@ -1,14 +1,11 @@
 package com.spldeolin.satisficing.security.service.service.impl;
 
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.UUID;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.google.common.hash.Hashing;
 import com.spldeolin.satisficing.security.client.javabean.LoginSession;
 import com.spldeolin.satisficing.security.service.entity.UserEntity;
 import com.spldeolin.satisficing.security.service.javabean.req.CreateUserReqDto;
@@ -54,9 +51,8 @@ public class CreateUserServiceImpl implements CreateUserService {
         user.setUserUuid(UUID.randomUUID().toString());
         user.setUsername(req.getUsername());
         user.setMobile(req.getMobile());
-        String salt = RandomStringUtils.randomAscii(RandomUtils.nextInt(6, 12));
-        user.setPassword(Hashing.sha256().hashString(defaultPassword + salt, StandardCharsets.UTF_8).toString());
-        user.setSalt(salt);
+        user.setPassword(new BCryptPasswordEncoder().encode(defaultPassword));
+        user.setSalt(null);
         user.setNickName(req.getNickName());
         user.setCreateUserUuid(LoginSession.getCurrent().getLoginUserUuid());
         user.setCreateTime(LocalDateTime.now());
