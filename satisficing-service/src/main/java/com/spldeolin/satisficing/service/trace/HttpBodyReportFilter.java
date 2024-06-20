@@ -51,15 +51,17 @@ public class HttpBodyReportFilter extends OncePerRequestFilter {
             filterChain.doFilter(wrappedRequest, wrappedResponse);
         } finally {
             // 请求离开时的报告
-            log.info("requestLeft-{}-{}-{}-{}\t{}\t{}", request.getRequestURL(), MDC.get("traceId"),
-                    System.currentTimeMillis() - start, request.getHeader(HttpHeaders.AUTHORIZATION),
-                    getRawRequestBody(wrappedRequest), getRawResponseBody(wrappedResponse));
+            log.info("requestLeft-{} {}-{}-{}-{}\t{}\t{}", request.getMethod(), request.getRequestURL(),
+                    MDC.get("traceId"), System.currentTimeMillis() - start,
+                    request.getHeader(HttpHeaders.AUTHORIZATION), getRawRequestBody(wrappedRequest),
+                    getRawResponseBody(wrappedResponse));
         }
     }
 
     private String getRawRequestBody(ContentCachingRequestWrapper wrappedRequest) {
-        if (!wrappedRequest.getHeader(HttpHeaders.CONTENT_TYPE).contains(MediaType.APPLICATION_JSON_VALUE)) {
-            return "<REQUEST IS NOT JSON>";
+        String contentType = wrappedRequest.getHeader(HttpHeaders.CONTENT_TYPE);
+        if (contentType == null || !contentType.contains(MediaType.APPLICATION_JSON_VALUE)) {
+            return "<REQUEST BODY IS NOT A JSON>";
         }
         try {
             // Response Body由客户端提供，所以编码从报文中获取
@@ -82,7 +84,7 @@ public class HttpBodyReportFilter extends OncePerRequestFilter {
             wrappedResponse.copyBodyToResponse();
             String contentType = wrappedResponse.getHeader(HttpHeaders.CONTENT_TYPE);
             if (contentType != null && !contentType.contains(MediaType.APPLICATION_JSON_VALUE)) {
-                return "<RESPONSE NOT JSON>";
+                return "<RESPONSE BODY NOT A JSON>";
             }
             String result = IOUtils.toString(wrappedResponse.getContentInputStream(), StandardCharsets.UTF_8);
             return result;
