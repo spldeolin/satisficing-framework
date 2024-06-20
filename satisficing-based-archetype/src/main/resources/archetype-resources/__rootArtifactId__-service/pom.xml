@@ -25,10 +25,6 @@
             <artifactId>satisficing-service</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.spldeolin.satisficing</groupId>
-            <artifactId>satisficing-security-service</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
