@@ -314,12 +314,22 @@
 
     <!-- Allison 1875 Lot No: QT1001S-1B2F0DC4 -->
     <select id='queryUserEx' parameterType='com.spldeolin.satisficing.security.service.javabean.cond.QueryUserCond'
-        resultMap='all'>
+        resultType='com.spldeolin.satisficing.security.service.javabean.record.QueryUserExRecord'>
         <!-- @formatter:off -->
-        SELECT
-            <include refid='all' />
+        SELECT t1.`id` AS userId,
+            t1.`user_uuid` AS userUuid,
+            t1.`username` AS username,
+            t1.`mobile` AS mobile,
+            t1.`nick_name` AS nickName,
+            t1.`create_user_uuid` AS createUserUuid,
+            t1.`create_time` AS createTime,
+            t1.`update_user_uuid` AS createUserUuid,
+            t1.`update_time` AS updateTime,
+            GROUP_CONCAT(REPLACE(t3.role_name, ',', '\\,')) AS roleNames
         FROM
-            `user`
+            `user` t1
+        LEFT JOIN user2role t2 ON t1.id = t2.user_id
+        LEFT JOIN role t3 ON t2.role_id = t3.id
         WHERE TRUE
         <if test="username != null and username != ''">
             AND `username` LIKE CONCAT('%', #{username}, '%')
@@ -335,6 +345,14 @@
         </if>
         <if test="createTimeEx != null">
             AND `create_time` &lt;= #{createTimeEx}
+        </if>
+        <if test="ids != null">
+            <if test="ids.size() > 0">
+                AND `id` IN (<foreach collection='ids' item='one' separator=','>#{one}</foreach>)
+            </if>
+            <if test="ids.size() == 0">
+                AND FALSE
+            </if>
         </if>
         <!-- @formatter:on -->
     </select>

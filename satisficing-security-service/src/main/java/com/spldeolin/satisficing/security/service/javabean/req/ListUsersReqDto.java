@@ -1,6 +1,7 @@
 package com.spldeolin.satisficing.security.service.javabean.req;
 
 import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -28,8 +29,12 @@ public class ListUsersReqDto {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     LocalDateTime createTimeRight;
 
-    Integer pageNum;
+    Long roleId;
 
-    Integer pageSize;
+    @NotNull
+    Integer pageNum = 1;
+
+    @NotNull
+    Integer pageSize = 30;
 
 }

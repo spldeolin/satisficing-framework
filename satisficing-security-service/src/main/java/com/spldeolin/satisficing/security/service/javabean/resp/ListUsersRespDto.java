@@ -1,6 +1,7 @@
 package com.spldeolin.satisficing.security.service.javabean.resp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -26,5 +27,7 @@ public class ListUsersRespDto {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     LocalDateTime createTime;
+
+    List<String> roleNames;
 
 }

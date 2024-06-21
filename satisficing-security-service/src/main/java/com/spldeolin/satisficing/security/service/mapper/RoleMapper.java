@@ -4,129 +4,136 @@ import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
-import com.spldeolin.satisficing.security.service.entity.UserEntity;
-import com.spldeolin.satisficing.security.service.javabean.cond.QueryUserCond;
-import com.spldeolin.satisficing.security.service.javabean.record.QueryUserExRecord;
+import com.spldeolin.satisficing.security.service.entity.RoleEntity;
 
 /**
- * 用户
- * <p>user
+ * 角色
+ * <p>role
+ * <p>
+ * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
  *
- * @author Deolin 2024-06-03
+ * @author Allison 1875 2024-06-19
  */
-public interface UserMapper {
+public interface RoleMapper {
 
     /**
      * 插入
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    int insert(UserEntity entity);
+    int insert(RoleEntity entity);
 
     /**
      * 批量插入
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    int batchInsert(@Param("entities") List<UserEntity> entities);
+    int batchInsert(@Param("entities") List<RoleEntity> entities);
 
     /**
      * 批量插入，为null的属性会被作为null插入
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    int batchInsertEvenNull(@Param("entities") List<UserEntity> entities);
+    int batchInsertEvenNull(@Param("entities") List<RoleEntity> entities);
 
     /**
      * 批量根据ID更新数据
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    int batchUpdate(@Param("entities") List<UserEntity> entities);
+    int batchUpdate(@Param("entities") List<RoleEntity> entities);
 
     /**
      * 批量根据ID更新数据，为null对应的字段会被更新为null
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    int batchUpdateEvenNull(@Param("entities") List<UserEntity> entities);
+    int batchUpdateEvenNull(@Param("entities") List<RoleEntity> entities);
 
     /**
      * 根据ID查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    UserEntity queryById(Long id);
+    RoleEntity queryById(Long id);
 
     /**
      * 根据ID更新数据，忽略值为null的属性
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    int updateById(UserEntity entity);
+    int updateById(RoleEntity entity);
 
     /**
      * 根据ID更新数据，为null属性对应的字段会被更新为null
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    int updateByIdEvenNull(UserEntity entity);
+    int updateByIdEvenNull(RoleEntity entity);
 
     /**
      * 根据多个ID查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    List<UserEntity> queryByIds(@Param("ids") List<Long> ids);
+    List<RoleEntity> queryByIds(@Param("ids") List<Long> ids);
 
     /**
      * 根据多个ID查询，并以ID作为key映射到Map
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
     @MapKey("id")
-    Map<Long, UserEntity> queryByIdsEachId(@Param("ids") List<Long> ids);
+    Map<Long, RoleEntity> queryByIdsEachId(@Param("ids") List<Long> ids);
 
     /**
      * 根据实体内的属性查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    List<UserEntity> queryByEntity(UserEntity entity);
+    List<RoleEntity> queryByEntity(RoleEntity entity);
 
     /**
      * 获取全部
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    List<UserEntity> listAll();
+    List<RoleEntity> listAll();
 
     /**
      * 尝试插入，若指定了id并存在，则更新，即INSERT ON DUPLICATE KEY UPDATE
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-9E7A9F37
      */
-    int insertOrUpdate(UserEntity entity);
+    int insertOrUpdate(RoleEntity entity);
 
     /**
-     * QT1001S-7D40249D
+     * QT1001S-39F9E3E5
      */
-    UserEntity getByUsernameOrMobile(@Param("username") String username, @Param("mobile") String mobile);
+    List<RoleEntity> queryRole(@Param("roleName") String roleName, @Param("description") String description);
 
     /**
-     * QT1001S-CCA44D8E
+     * QT1001S-A9C5418E
      */
-    UserEntity queryUser(@Param("userUuid") String userUuid);
+    RoleEntity queryRoleEx(@Param("roleName") String roleName, @Param("id") Long id);
 
     /**
-     * QT1001S-1B2F0DC4
+     * QT1001S-ABBD8070
      */
-    List<QueryUserExRecord> queryUserEx(QueryUserCond queryUserCond);
-
-    /**
-     * QT1001S-0C147D98
-     */
-    UserEntity queryUserEx2(@Param("userUuid") String userUuid, @Param("username") String username,
-            @Param("mobile") String mobile);
+    int dropRole(@Param("id") Long id);
 
 }

@@ -1,6 +1,7 @@
 package com.spldeolin.satisficing.security.service.javabean.cond;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldDefaults;
@@ -39,5 +40,7 @@ public class QueryUserCond {
      * 插入数据的时间
      */
     LocalDateTime createTimeEx;
+
+    List<Long> ids;
 
 }

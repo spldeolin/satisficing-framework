@@ -27,7 +27,7 @@ spring:
 
 logging:
   level:
-    com.spldeolin.beginningmind: DEBUG
+    com.spldeolin.satisficing.security: DEBUG
 
 thread-pool:
   core-size: 5

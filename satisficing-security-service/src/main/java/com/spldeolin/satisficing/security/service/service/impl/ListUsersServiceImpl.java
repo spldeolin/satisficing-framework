@@ -5,13 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
-import com.spldeolin.satisficing.security.service.entity.UserEntity;
 import com.spldeolin.satisficing.security.service.javabean.cond.QueryUserCond;
+import com.spldeolin.satisficing.security.service.javabean.record.QueryUserExRecord;
 import com.spldeolin.satisficing.security.service.javabean.req.ListUsersReqDto;
 import com.spldeolin.satisficing.security.service.javabean.resp.ListUsersRespDto;
+import com.spldeolin.satisficing.security.service.mapper.RoleMapper;
+import com.spldeolin.satisficing.security.service.mapper.User2roleMapper;
 import com.spldeolin.satisficing.security.service.mapper.UserMapper;
 import com.spldeolin.satisficing.security.service.service.ListUsersService;
 import com.spldeolin.satisficing.service.util.PageUtils;
+import com.spldeolin.satisficing.service.util.TextUtils;
 import com.spldeolin.satisficing.service.util.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,27 +30,46 @@ public class ListUsersServiceImpl implements ListUsersService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private User2roleMapper user2roleMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
+
     @Override
     public PageInfo<ListUsersRespDto> listUsers(ListUsersReqDto req) {
+        List<Long> userIds = null;
+        if (req.getRoleId() != null) {
+            userIds = user2roleMapper.queryUserIds(req.getRoleId());
+        }
         final QueryUserCond queryUserCond = new QueryUserCond();
         queryUserCond.setUsername(req.getUsername());
         queryUserCond.setMobile(req.getMobile());
         queryUserCond.setNickName(req.getNickName());
         queryUserCond.setCreateTime(TimeUtils.toggleToDayStart(req.getCreateTimeLeft()));
         queryUserCond.setCreateTimeEx(TimeUtils.toggleToDayEnd(req.getCreateTimeRight()));
-        List<UserEntity> users = userMapper.queryUserEx(queryUserCond);
+        queryUserCond.setIds(userIds);
+        List<QueryUserExRecord> users = userMapper.queryUserEx(queryUserCond);
         if (users.isEmpty()) {
             return new PageInfo<>(Lists.newArrayList());
         }
 
+        /*
+            在RBAC中，Role的存在意义在于让用户无需直接管理大量的权限关系，而是通过角色来集中授予相关权限。
+            User通常不需要也不应该关联过多的角色，否则就会降低 RBAC 的效果。
+            所以User被授予的Roles无需分页，而Roles所关联的User可能需要分页。
+            同理，一个Department可能有很多用户，但一个用户不可能加入很多Department
+         */
+
         List<ListUsersRespDto> dtos = Lists.newArrayList();
-        for (UserEntity user : users) {
+        for (QueryUserExRecord user : users) {
             ListUsersRespDto dto = new ListUsersRespDto();
             dto.setUserUuid(user.getUserUuid());
             dto.setUsername(user.getUsername());
             dto.setMobile(user.getMobile());
             dto.setNickName(user.getNickName());
             dto.setCreateTime(user.getCreateTime());
+            dto.setRoleNames(TextUtils.splitAndUnescapeComma(user.getRoleNames()));
             dtos.add(dto);
         }
 
