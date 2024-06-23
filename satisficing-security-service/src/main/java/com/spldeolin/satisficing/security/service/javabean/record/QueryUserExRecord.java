@@ -34,4 +34,6 @@ public class QueryUserExRecord {
 
     String roleNames;
 
+    String departmentNames;
+
 }

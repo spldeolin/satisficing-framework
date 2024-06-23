@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spldeolin.satisficing.security.client.javabean.LoginSession;
 import com.spldeolin.satisficing.security.service.entity.UserEntity;
 import com.spldeolin.satisficing.security.service.javabean.req.CreateUserReqDto;
-import com.spldeolin.satisficing.security.service.javabean.resp.CreateUserRespDto;
 import com.spldeolin.satisficing.security.service.mapper.UserMapper;
 import com.spldeolin.satisficing.security.service.service.CreateUserService;
 import com.spldeolin.satisficing.service.exception.BizException;
@@ -35,7 +34,7 @@ public class CreateUserServiceImpl implements CreateUserService {
 
     @Transactional
     @Override
-    public CreateUserRespDto createUser(CreateUserReqDto req) {
+    public void createUser(CreateUserReqDto req) {
         UserEntity duplication = userMapper.queryUserEx2(null, req.getUsername(), req.getMobile());
         if (duplication != null) {
             if (duplication.getUsername().equals(req.getUsername())) {
@@ -52,14 +51,12 @@ public class CreateUserServiceImpl implements CreateUserService {
         user.setUsername(req.getUsername());
         user.setMobile(req.getMobile());
         user.setPassword(new BCryptPasswordEncoder().encode(defaultPassword));
-        user.setSalt(null);
         user.setNickName(req.getNickName());
         user.setCreateUserUuid(LoginSession.getCurrent().getLoginUserUuid());
         user.setCreateTime(LocalDateTime.now());
         user.setUpdateUserUuid(LoginSession.getCurrent().getLoginUserUuid());
         user.setUpdateTime(LocalDateTime.now());
         userMapper.insert(user);
-        return new CreateUserRespDto().setUserUuid(user.getUserUuid());
     }
 
 }

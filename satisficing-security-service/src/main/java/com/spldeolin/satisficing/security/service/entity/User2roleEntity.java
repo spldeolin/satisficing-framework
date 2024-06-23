@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
  * <p>Any modifications may be overwritten by future code generations.
  * <p>Allison 1875 Lot No: PG1001S-5474455B
  *
- * @author Allison 1875 2024-06-19
+ * @author Allison 1875 2024-06-21
  */
 @Data
 @Accessors(chain = true)
@@ -73,5 +73,4 @@ public class User2roleEntity {
      * <p>默认：CURRENT_TIMESTAMP
      */
     LocalDateTime updateTime;
-
 }

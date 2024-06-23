@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spldeolin.satisficing.security.service.mapper.RoleMapper">
-    <!-- [START] Any modifications may be overwritten by future code generations. Allison 1875 Lot No: PG1001S-9E7A9F37 -->
+    <!-- [START] Any modifications may be overwritten by future code generations. Allison 1875 Lot No: PG1001S-74859B7D -->
 
     <resultMap id="all" type="com.spldeolin.satisficing.security.service.entity.RoleEntity">
         <id column="id" property="id"/>
@@ -234,8 +234,7 @@
         <!-- @formatter:on -->
     </insert>
 
-    <!-- [END] Any modifications may be overwritten by future code generations. Allison 1875 Lot No: PG1001S-9E7A9F37 -->
-
+    <!-- [END] Any modifications may be overwritten by future code generations. Allison 1875 Lot No: PG1001S-74859B7D -->
     <!-- Allison 1875 Lot No: QT1001S-39F9E3E5 -->
     <select id='queryRole' resultMap='all'>
         <!-- @formatter:off -->
@@ -252,7 +251,6 @@
         </if>
         <!-- @formatter:on -->
     </select>
-
     <!-- Allison 1875 Lot No: QT1001S-A9C5418E -->
     <select id='queryRoleEx' resultMap='all'>
         <!-- @formatter:off -->
@@ -268,8 +266,6 @@
         LIMIT 1
         <!-- @formatter:on -->
     </select>
-
-
     <!-- Allison 1875 Lot No: QT1001S-ABBD8070 -->
     <delete id='dropRole' parameterType='java.lang.Long'>
         <!-- @formatter:off -->

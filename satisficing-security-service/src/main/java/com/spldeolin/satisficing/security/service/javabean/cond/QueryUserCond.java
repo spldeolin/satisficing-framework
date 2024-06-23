@@ -1,7 +1,6 @@
 package com.spldeolin.satisficing.security.service.javabean.cond;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldDefaults;
@@ -41,6 +40,8 @@ public class QueryUserCond {
      */
     LocalDateTime createTimeEx;
 
-    List<Long> ids;
+    Long roleId;
+
+    Long departmentId;
 
 }

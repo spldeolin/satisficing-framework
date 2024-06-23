@@ -14,6 +14,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
 public class GetPublicKeyRespDto {
 
+    /**
+     * base64公钥
+     */
     String publicKey;
 
 }

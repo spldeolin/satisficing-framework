@@ -4,112 +4,100 @@ import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
-import com.spldeolin.satisficing.security.service.entity.User2roleEntity;
+import com.spldeolin.satisficing.security.service.entity.User2departmentEntity;
 
 /**
- * 用户与角色的关联关系
- * <p>user2role
+ * 用户与部门的关联关系
+ * <p>user2department
  * <p>
- * <p>Allison 1875 Lot No: PG1001S-5474455B
+ * <p>Allison 1875 Lot No: PG1001S-94AED10B
  *
- * @author Allison 1875 2024-06-19
+ * @author Allison 1875 2024-06-21
  */
-public interface User2roleMapper {
+public interface User2departmentMapper {
 
     /**
      * 插入
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    int insert(User2roleEntity entity);
+    int insert(User2departmentEntity entity);
 
     /**
      * 批量插入
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    int batchInsert(@Param("entities") List<User2roleEntity> entities);
+    int batchInsert(@Param("entities") List<User2departmentEntity> entities);
 
     /**
      * 批量插入，为null的属性会被作为null插入
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    int batchInsertEvenNull(@Param("entities") List<User2roleEntity> entities);
+    int batchInsertEvenNull(@Param("entities") List<User2departmentEntity> entities);
 
     /**
      * 批量根据ID更新数据
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    int batchUpdate(@Param("entities") List<User2roleEntity> entities);
+    int batchUpdate(@Param("entities") List<User2departmentEntity> entities);
 
     /**
      * 批量根据ID更新数据，为null对应的字段会被更新为null
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    int batchUpdateEvenNull(@Param("entities") List<User2roleEntity> entities);
+    int batchUpdateEvenNull(@Param("entities") List<User2departmentEntity> entities);
 
     /**
      * 根据ID查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    com.spldeolin.satisficing.security.service.entity.User2roleEntity queryById(Long id);
+    com.spldeolin.satisficing.security.service.entity.User2departmentEntity queryById(Long id);
 
     /**
      * 根据ID更新数据，忽略值为null的属性
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    int updateById(User2roleEntity entity);
+    int updateById(User2departmentEntity entity);
 
     /**
      * 根据ID更新数据，为null属性对应的字段会被更新为null
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    int updateByIdEvenNull(User2roleEntity entity);
+    int updateByIdEvenNull(User2departmentEntity entity);
 
     /**
      * 根据多个ID查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    List<User2roleEntity> queryByIds(@Param("ids") List<Long> ids);
+    List<User2departmentEntity> queryByIds(@Param("ids") List<Long> ids);
 
     /**
      * 根据多个ID查询，并以ID作为key映射到Map
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
     @MapKey("id")
-    Map<Long, User2roleEntity> queryByIdsEachId(@Param("ids") List<Long> ids);
+    Map<Long, User2departmentEntity> queryByIdsEachId(@Param("ids") List<Long> ids);
 
     /**
      * 根据「用户ID」查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    List<User2roleEntity> queryByUserId(Long userId);
+    List<User2departmentEntity> queryByUserId(Long userId);
 
     /**
      * 根据「用户ID」删除
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
     int deleteByUserId(Long userId);
 
@@ -117,57 +105,49 @@ public interface User2roleMapper {
      * 根据多个「用户ID」查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    List<User2roleEntity> queryByUserIds(@Param("userIds") List<Long> userIds);
+    List<User2departmentEntity> queryByUserIds(@Param("userIds") List<Long> userIds);
 
     /**
-     * 根据「角色ID」查询
+     * 根据「部门ID」查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    List<User2roleEntity> queryByRoleId(Long roleId);
+    List<User2departmentEntity> queryByDepartmentId(Long departmentId);
 
     /**
-     * 根据「角色ID」删除
+     * 根据「部门ID」删除
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    int deleteByRoleId(Long roleId);
+    int deleteByDepartmentId(Long departmentId);
 
     /**
-     * 根据多个「角色ID」查询
+     * 根据多个「部门ID」查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    List<User2roleEntity> queryByRoleIds(@Param("roleIds") List<Long> roleIds);
+    List<User2departmentEntity> queryByDepartmentIds(@Param("departmentIds") List<Long> departmentIds);
 
     /**
      * 根据实体内的属性查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    List<User2roleEntity> queryByEntity(User2roleEntity entity);
+    List<User2departmentEntity> queryByEntity(User2departmentEntity entity);
 
     /**
      * 获取全部
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    List<User2roleEntity> listAll();
+    List<User2departmentEntity> listAll();
 
     /**
      * 尝试插入，若指定了id并存在，则更新，即INSERT ON DUPLICATE KEY UPDATE
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
-     * <p>Allison 1875 Lot No: PG1001S-5474455B
      */
-    int insertOrUpdate(User2roleEntity entity);
+    int insertOrUpdate(User2departmentEntity entity);
 
-    List<Long> queryUserIds(Long roleId);
 }

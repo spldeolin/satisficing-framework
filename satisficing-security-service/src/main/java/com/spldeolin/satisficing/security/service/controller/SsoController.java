@@ -21,6 +21,8 @@ import com.spldeolin.satisficing.security.service.rsa.RSA;
 import com.spldeolin.satisficing.security.service.service.SsoService;
 
 /**
+ * 单点登录
+ *
  * @author Deolin 2024-05-30
  */
 @RestController
@@ -34,7 +36,6 @@ public class SsoController {
 
     /**
      * 获取公钥
-     * <p>Allison 1875 Lot No: HT1001S-8D86E744
      */
     @PostMapping("getPublicKey")
     @Authc(AuthcRule.NONE)

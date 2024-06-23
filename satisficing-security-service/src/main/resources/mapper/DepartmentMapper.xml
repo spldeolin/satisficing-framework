@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.spldeolin.satisficing.security.service.mapper.User2roleMapper">
-    <!-- [START] Any modifications may be overwritten by future code generations. Allison 1875 Lot No: PG1001S-5474455B -->
+<mapper namespace="com.spldeolin.satisficing.security.service.mapper.DepartmentMapper">
+    <!-- [START] Any modifications may be overwritten by future code generations. -->
 
-    <resultMap id="all" type="com.spldeolin.satisficing.security.service.entity.User2roleEntity">
+    <resultMap id="all" type="com.spldeolin.satisficing.security.service.entity.DepartmentEntity">
         <id column="id" property="id"/>
-        <result column="user_id" property="userId"/>
-        <result column="role_id" property="roleId"/>
+        <result column="department_name" property="departmentName"/>
+        <result column="path" property="path"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="description" property="description"/>
         <result column="create_user_uuid" property="createUserUuid"/>
         <result column="create_time" property="createTime"/>
         <result column="update_user_uuid" property="updateUserUuid"/>
@@ -14,16 +16,20 @@
     </resultMap>
 
     <sql id="all">
-        `id`, `user_id`, `role_id`, `create_user_uuid`, `create_time`, `update_user_uuid`, `update_time`
+        `id`, `department_name`, `path`, `parent_id`, `description`, `create_user_uuid`, `create_time`,
+        `update_user_uuid`,
+        `update_time`
     </sql>
 
-    <insert id="insert" parameterType="com.spldeolin.satisficing.security.service.entity.User2roleEntity">
+    <insert id="insert" parameterType="com.spldeolin.satisficing.security.service.entity.DepartmentEntity">
         <!-- @formatter:off -->
-        INSERT INTO `user2role`
+        INSERT INTO `department`
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null"> `id`, </if>
-            <if test="userId!=null"> `user_id`, </if>
-            <if test="roleId!=null"> `role_id`, </if>
+            <if test="departmentName!=null"> `department_name`, </if>
+            <if test="path!=null"> `path`, </if>
+            <if test="parentId!=null"> `parent_id`, </if>
+            <if test="description!=null"> `description`, </if>
             <if test="createUserUuid!=null"> `create_user_uuid`, </if>
             <if test="createTime!=null"> `create_time`, </if>
             <if test="updateUserUuid!=null"> `update_user_uuid`, </if>
@@ -31,8 +37,10 @@
         </trim>
         <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
             <if test="id!=null"> #{id}, </if>
-            <if test="userId!=null"> #{userId}, </if>
-            <if test="roleId!=null"> #{roleId}, </if>
+            <if test="departmentName!=null"> #{departmentName}, </if>
+            <if test="path!=null"> #{path}, </if>
+            <if test="parentId!=null"> #{parentId}, </if>
+            <if test="description!=null"> #{description}, </if>
             <if test="createUserUuid!=null"> #{createUserUuid}, </if>
             <if test="createTime!=null"> #{createTime}, </if>
             <if test="updateUserUuid!=null"> #{updateUserUuid}, </if>
@@ -44,11 +52,13 @@
     <insert id="batchInsert">
         <!-- @formatter:off -->
         <foreach collection="entities" item="one" separator=";">
-            INSERT INTO `user2role`
+            INSERT INTO `department`
             <trim prefix="(" suffix=")" suffixOverrides=",">
                 <if test="one.id!=null"> `id`, </if>
-                <if test="one.userId!=null"> `user_id`, </if>
-                <if test="one.roleId!=null"> `role_id`, </if>
+                <if test="one.departmentName!=null"> `department_name`, </if>
+                <if test="one.path!=null"> `path`, </if>
+                <if test="one.parentId!=null"> `parent_id`, </if>
+                <if test="one.description!=null"> `description`, </if>
                 <if test="one.createUserUuid!=null"> `create_user_uuid`, </if>
                 <if test="one.createTime!=null"> `create_time`, </if>
                 <if test="one.updateUserUuid!=null"> `update_user_uuid`, </if>
@@ -56,8 +66,10 @@
             </trim>
             <trim prefix="VALUE (" suffix=")" suffixOverrides=",">
                 <if test="one.id!=null"> #{one.id}, </if>
-                <if test="one.userId!=null"> #{one.userId}, </if>
-                <if test="one.roleId!=null"> #{one.roleId}, </if>
+                <if test="one.departmentName!=null"> #{one.departmentName}, </if>
+                <if test="one.path!=null"> #{one.path}, </if>
+                <if test="one.parentId!=null"> #{one.parentId}, </if>
+                <if test="one.description!=null"> #{one.description}, </if>
                 <if test="one.createUserUuid!=null"> #{one.createUserUuid}, </if>
                 <if test="one.createTime!=null"> #{one.createTime}, </if>
                 <if test="one.updateUserUuid!=null"> #{one.updateUserUuid}, </if>
@@ -69,12 +81,12 @@
 
     <insert id="batchInsertEvenNull">
         <!-- @formatter:off -->
-        INSERT INTO `user2role`
+        INSERT INTO `department`
             ( <include refid="all"/> )
         VALUES
             <foreach collection="entities" item="one" separator=",">(
-                #{one.id}, #{one.userId}, #{one.roleId}, #{one.createUserUuid}, #{one.createTime}, #{one.updateUserUuid},
-                #{one.updateTime}
+                #{one.id}, #{one.departmentName}, #{one.path}, #{one.parentId}, #{one.description}, #{one.createUserUuid},
+                #{one.createTime}, #{one.updateUserUuid}, #{one.updateTime}
             )</foreach>
         <!-- @formatter:on -->
     </insert>
@@ -82,10 +94,12 @@
     <update id="batchUpdate">
         <foreach collection="entities" item="one" separator=";">
             <!-- @formatter:off -->
-            UPDATE `user2role`
+            UPDATE `department`
             <set>
-                <if test="one.userId!=null"> `user_id` = #{one.userId}, </if>
-                <if test="one.roleId!=null"> `role_id` = #{one.roleId}, </if>
+                <if test="one.departmentName!=null"> `department_name` = #{one.departmentName}, </if>
+                <if test="one.path!=null"> `path` = #{one.path}, </if>
+                <if test="one.parentId!=null"> `parent_id` = #{one.parentId}, </if>
+                <if test="one.description!=null"> `description` = #{one.description}, </if>
                 <if test="one.createUserUuid!=null"> `create_user_uuid` = #{one.createUserUuid}, </if>
                 <if test="one.createTime!=null"> `create_time` = #{one.createTime}, </if>
                 <if test="one.updateUserUuid!=null"> `update_user_uuid` = #{one.updateUserUuid}, </if>
@@ -100,10 +114,12 @@
     <update id="batchUpdateEvenNull">
         <foreach collection="entities" item="one" separator=";">
             <!-- @formatter:off -->
-            UPDATE `user2role`
+            UPDATE `department`
             SET
-                `user_id` = #{one.userId},
-                `role_id` = #{one.roleId},
+                `department_name` = #{one.departmentName},
+                `path` = #{one.path},
+                `parent_id` = #{one.parentId},
+                `description` = #{one.description},
                 `create_user_uuid` = #{one.createUserUuid},
                 `create_time` = #{one.createTime},
                 `update_user_uuid` = #{one.updateUserUuid},
@@ -118,18 +134,20 @@
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM `user2role`
+        FROM `department`
         WHERE 1 = 1
           AND `id` = #{id}
         <!-- @formatter:on -->
     </select>
 
-    <update id="updateById" parameterType="com.spldeolin.satisficing.security.service.entity.User2roleEntity">
+    <update id="updateById" parameterType="com.spldeolin.satisficing.security.service.entity.DepartmentEntity">
         <!-- @formatter:off -->
-        UPDATE `user2role`
+        UPDATE `department`
         <set>
-            <if test="userId!=null"> `user_id` = #{userId}, </if>
-            <if test="roleId!=null"> `role_id` = #{roleId}, </if>
+            <if test="departmentName!=null"> `department_name` = #{departmentName}, </if>
+            <if test="path!=null"> `path` = #{path}, </if>
+            <if test="parentId!=null"> `parent_id` = #{parentId}, </if>
+            <if test="description!=null"> `description` = #{description}, </if>
             <if test="createUserUuid!=null"> `create_user_uuid` = #{createUserUuid}, </if>
             <if test="createTime!=null"> `create_time` = #{createTime}, </if>
             <if test="updateUserUuid!=null"> `update_user_uuid` = #{updateUserUuid}, </if>
@@ -140,12 +158,14 @@
         <!-- @formatter:on -->
     </update>
 
-    <update id="updateByIdEvenNull" parameterType="com.spldeolin.satisficing.security.service.entity.User2roleEntity">
+    <update id="updateByIdEvenNull" parameterType="com.spldeolin.satisficing.security.service.entity.DepartmentEntity">
         <!-- @formatter:off -->
-        UPDATE `user2role`
+        UPDATE `department`
         SET
-            `user_id` = #{userId},
-            `role_id` = #{roleId},
+            `department_name` = #{departmentName},
+            `path` = #{path},
+            `parent_id` = #{parentId},
+            `description` = #{description},
             `create_user_uuid` = #{createUserUuid},
             `create_time` = #{createTime},
             `update_user_uuid` = #{updateUserUuid},
@@ -159,7 +179,7 @@
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM `user2role`
+        FROM `department`
         WHERE 1 = 1
           AND `id` IN (<foreach collection="ids" item="one" separator=",">#{one}</foreach>)
         <!-- @formatter:on -->
@@ -169,78 +189,52 @@
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM `user2role`
+        FROM `department`
         WHERE 1 = 1
           AND `id` IN (<foreach collection="ids" item="one" separator=",">#{one}</foreach>)
         <!-- @formatter:on -->
     </select>
 
-    <select id="queryByUserId" parameterType="Long" resultMap="all">
+    <select id="queryByParentId" parameterType="String" resultMap="all">
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM `user2role`
+        FROM `department`
         WHERE 1 = 1
-          AND `user_id` = #{userId}
+          AND `parent_id` = #{parentId}
         <!-- @formatter:on -->
     </select>
 
-    <select id="queryByRoleId" parameterType="Long" resultMap="all">
+    <update id="deleteByParentId" parameterType="String">
         <!-- @formatter:off -->
-        SELECT
-            <include refid="all"/>
-        FROM `user2role`
-        WHERE 1 = 1
-          AND `role_id` = #{roleId}
-        <!-- @formatter:on -->
-    </select>
-
-    <update id="deleteByUserId" parameterType="Long">
-        <!-- @formatter:off -->
-        UPDATE `user2role`
+        UPDATE `department`
         SET null
-        WHERE `user_id` = #{userId}
+        WHERE `parent_id` = #{parentId}
         <!-- @formatter:on -->
     </update>
 
-    <update id="deleteByRoleId" parameterType="Long">
-        <!-- @formatter:off -->
-        UPDATE `user2role`
-        SET null
-        WHERE `role_id` = #{roleId}
-        <!-- @formatter:on -->
-    </update>
-
-    <select id="queryByUserIds" parameterType="Long" resultMap="all">
+    <select id="queryByParentIds" parameterType="String" resultMap="all">
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM `user2role`
+        FROM `department`
         WHERE 1 = 1
-          AND `user_id` IN (<foreach collection="userIds" item="one" separator=",">#{one}</foreach>)
+          AND `parent_id` IN (<foreach collection="parentIds" item="one" separator=",">#{one}</foreach>)
         <!-- @formatter:on -->
     </select>
 
-    <select id="queryByRoleIds" parameterType="Long" resultMap="all">
-        <!-- @formatter:off -->
-        SELECT
-            <include refid="all"/>
-        FROM `user2role`
-        WHERE 1 = 1
-          AND `role_id` IN (<foreach collection="roleIds" item="one" separator=",">#{one}</foreach>)
-        <!-- @formatter:on -->
-    </select>
-
-    <select id="queryByEntity" parameterType="com.spldeolin.satisficing.security.service.entity.User2roleEntity"
+    <select id="queryByEntity" parameterType="com.spldeolin.satisficing.security.service.entity.DepartmentEntity"
         resultMap="all">
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM `user2role`
+        FROM `department`
         WHERE 1 = 1
           <if test="id!=null"> AND `id` = #{id} </if>
-          <if test="userId!=null"> AND `user_id` = #{userId} </if>
-          <if test="roleId!=null"> AND `role_id` = #{roleId} </if>
+          <if test="departmentName!=null"> AND `department_name` = #{departmentName} </if>
+          <if test="path!=null"> AND `path` = #{path} </if>
+          <if test="parentId!=null"> AND `parent_id` = #{parentId} </if>
+          <if test="description!=null"> AND `description` = #{description} </if>
           <if test="createUserUuid!=null"> AND `create_user_uuid` = #{createUserUuid} </if>
           <if test="createTime!=null"> AND `create_time` = #{createTime} </if>
           <if test="updateUserUuid!=null"> AND `update_user_uuid` = #{updateUserUuid} </if>
@@ -252,18 +246,20 @@
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM `user2role`
+        FROM `department`
         WHERE 1 = 1
         <!-- @formatter:on -->
     </select>
 
-    <insert id="insertOrUpdate" parameterType="com.spldeolin.satisficing.security.service.entity.User2roleEntity">
+    <insert id="insertOrUpdate" parameterType="com.spldeolin.satisficing.security.service.entity.DepartmentEntity">
         <!-- @formatter:off -->
-        INSERT INTO `user2role`
+        INSERT INTO `department`
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null"> `id`, </if>
-            <if test="userId!=null"> `user_id`, </if>
-            <if test="roleId!=null"> `role_id`, </if>
+            <if test="departmentName!=null"> `department_name`, </if>
+            <if test="path!=null"> `path`, </if>
+            <if test="parentId!=null"> `parent_id`, </if>
+            <if test="description!=null"> `description`, </if>
             <if test="createUserUuid!=null"> `create_user_uuid`, </if>
             <if test="createTime!=null"> `create_time`, </if>
             <if test="updateUserUuid!=null"> `update_user_uuid`, </if>
@@ -271,8 +267,10 @@
         </trim>
         <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
             <if test="id!=null"> #{id}, </if>
-            <if test="userId!=null"> #{userId}, </if>
-            <if test="roleId!=null"> #{roleId}, </if>
+            <if test="departmentName!=null"> #{departmentName}, </if>
+            <if test="path!=null"> #{path}, </if>
+            <if test="parentId!=null"> #{parentId}, </if>
+            <if test="description!=null"> #{description}, </if>
             <if test="createUserUuid!=null"> #{createUserUuid}, </if>
             <if test="createTime!=null"> #{createTime}, </if>
             <if test="updateUserUuid!=null"> #{updateUserUuid}, </if>
@@ -280,8 +278,10 @@
         </trim>
         ON DUPLICATE KEY UPDATE
         <trim suffixOverrides=",">
-            <if test="userId!=null"> `user_id` = #{userId}, </if>
-            <if test="roleId!=null"> `role_id` = #{roleId}, </if>
+            <if test="departmentName!=null"> `department_name` = #{departmentName}, </if>
+            <if test="path!=null"> `path` = #{path}, </if>
+            <if test="parentId!=null"> `parent_id` = #{parentId}, </if>
+            <if test="description!=null"> `description` = #{description}, </if>
             <if test="createUserUuid!=null"> `create_user_uuid` = #{createUserUuid}, </if>
             <if test="createTime!=null"> `create_time` = #{createTime}, </if>
             <if test="updateUserUuid!=null"> `update_user_uuid` = #{updateUserUuid}, </if>
@@ -290,8 +290,5 @@
         <!-- @formatter:on -->
     </insert>
 
-    <!-- [END] Any modifications may be overwritten by future code generations. Allison 1875 Lot No: PG1001S-5474455B -->
-    <select id="queryUserIds" resultType="java.lang.Long">
-        SELECT user_id FROM `user2role` WHERE role_id = #{roleId}
-    </select>
+    <!-- [END] Any modifications may be overwritten by future code generations. -->
 </mapper>

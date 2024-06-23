@@ -14,6 +14,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LoginByCodeReqDto {
 
+    /**
+     * 用于换取token的临时code
+     */
     @NotNull
     String code;
 

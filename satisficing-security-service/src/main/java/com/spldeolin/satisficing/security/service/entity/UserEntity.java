@@ -10,8 +10,9 @@ import lombok.experimental.FieldDefaults;
  * <p>user
  * <p>
  * <p>Any modifications may be overwritten by future code generations.
+ * <p>Allison 1875 Lot No: PG1001S-F7A47F26
  *
- * @author Deolin 2024-06-03
+ * @author Allison 1875 2024-06-21
  */
 @Data
 @Accessors(chain = true)
@@ -58,14 +59,6 @@ public class UserEntity {
     String password;
 
     /**
-     * 加盐加密
-     * <p>salt
-     * <p>长度：255
-     * <p>不能为null
-     */
-    String salt;
-
-    /**
      * 用户昵称
      * <p>nick_name
      * <p>长度：255
@@ -106,5 +99,4 @@ public class UserEntity {
      * <p>默认：CURRENT_TIMESTAMP
      */
     LocalDateTime updateTime;
-
 }

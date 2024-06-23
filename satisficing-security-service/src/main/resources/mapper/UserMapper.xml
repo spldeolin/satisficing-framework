@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spldeolin.satisficing.security.service.mapper.UserMapper">
-    <!-- [START] Any modifications may be overwritten by future code generations. -->
+    <!-- [START] Any modifications may be overwritten by future code generations. Allison 1875 Lot No: PG1001S-F7A47F26 -->
 
     <resultMap id="all" type="com.spldeolin.satisficing.security.service.entity.UserEntity">
         <id column="id" property="id"/>
@@ -9,7 +9,6 @@
         <result column="username" property="username"/>
         <result column="mobile" property="mobile"/>
         <result column="password" property="password"/>
-        <result column="salt" property="salt"/>
         <result column="nick_name" property="nickName"/>
         <result column="create_user_uuid" property="createUserUuid"/>
         <result column="create_time" property="createTime"/>
@@ -18,7 +17,7 @@
     </resultMap>
 
     <sql id="all">
-        `id`, `user_uuid`, `username`, `mobile`, `password`, `salt`, `nick_name`, `create_user_uuid`, `create_time`,
+        `id`, `user_uuid`, `username`, `mobile`, `password`, `nick_name`, `create_user_uuid`, `create_time`,
         `update_user_uuid`, `update_time`
     </sql>
 
@@ -31,7 +30,6 @@
             <if test="username!=null"> `username`, </if>
             <if test="mobile!=null"> `mobile`, </if>
             <if test="password!=null"> `password`, </if>
-            <if test="salt!=null"> `salt`, </if>
             <if test="nickName!=null"> `nick_name`, </if>
             <if test="createUserUuid!=null"> `create_user_uuid`, </if>
             <if test="createTime!=null"> `create_time`, </if>
@@ -44,7 +42,6 @@
             <if test="username!=null"> #{username}, </if>
             <if test="mobile!=null"> #{mobile}, </if>
             <if test="password!=null"> #{password}, </if>
-            <if test="salt!=null"> #{salt}, </if>
             <if test="nickName!=null"> #{nickName}, </if>
             <if test="createUserUuid!=null"> #{createUserUuid}, </if>
             <if test="createTime!=null"> #{createTime}, </if>
@@ -64,7 +61,6 @@
                 <if test="one.username!=null"> `username`, </if>
                 <if test="one.mobile!=null"> `mobile`, </if>
                 <if test="one.password!=null"> `password`, </if>
-                <if test="one.salt!=null"> `salt`, </if>
                 <if test="one.nickName!=null"> `nick_name`, </if>
                 <if test="one.createUserUuid!=null"> `create_user_uuid`, </if>
                 <if test="one.createTime!=null"> `create_time`, </if>
@@ -77,7 +73,6 @@
                 <if test="one.username!=null"> #{one.username}, </if>
                 <if test="one.mobile!=null"> #{one.mobile}, </if>
                 <if test="one.password!=null"> #{one.password}, </if>
-                <if test="one.salt!=null"> #{one.salt}, </if>
                 <if test="one.nickName!=null"> #{one.nickName}, </if>
                 <if test="one.createUserUuid!=null"> #{one.createUserUuid}, </if>
                 <if test="one.createTime!=null"> #{one.createTime}, </if>
@@ -94,7 +89,7 @@
             ( <include refid="all"/> )
         VALUES
             <foreach collection="entities" item="one" separator=",">(
-                #{one.id}, #{one.userUuid}, #{one.username}, #{one.mobile}, #{one.password}, #{one.salt}, #{one.nickName},
+                #{one.id}, #{one.userUuid}, #{one.username}, #{one.mobile}, #{one.password}, #{one.nickName},
                 #{one.createUserUuid}, #{one.createTime}, #{one.updateUserUuid}, #{one.updateTime}
             )</foreach>
         <!-- @formatter:on -->
@@ -109,14 +104,13 @@
                 <if test="one.username!=null"> `username` = #{one.username}, </if>
                 <if test="one.mobile!=null"> `mobile` = #{one.mobile}, </if>
                 <if test="one.password!=null"> `password` = #{one.password}, </if>
-                <if test="one.salt!=null"> `salt` = #{one.salt}, </if>
                 <if test="one.nickName!=null"> `nick_name` = #{one.nickName}, </if>
                 <if test="one.createUserUuid!=null"> `create_user_uuid` = #{one.createUserUuid}, </if>
                 <if test="one.createTime!=null"> `create_time` = #{one.createTime}, </if>
                 <if test="one.updateUserUuid!=null"> `update_user_uuid` = #{one.updateUserUuid}, </if>
                 <if test="one.updateTime!=null"> `update_time` = #{one.updateTime}, </if>
             </set>
-            WHERE TRUE
+            WHERE 1 = 1
               AND `id` = #{one.id}
             <!-- @formatter:on -->
         </foreach>
@@ -131,13 +125,12 @@
                 `username` = #{one.username},
                 `mobile` = #{one.mobile},
                 `password` = #{one.password},
-                `salt` = #{one.salt},
                 `nick_name` = #{one.nickName},
                 `create_user_uuid` = #{one.createUserUuid},
                 `create_time` = #{one.createTime},
                 `update_user_uuid` = #{one.updateUserUuid},
                 `update_time` = #{one.updateTime}
-            WHERE TRUE
+            WHERE 1 = 1
               AND `id` = #{one.id}
             <!-- @formatter:on -->
         </foreach>
@@ -148,7 +141,7 @@
         SELECT
             <include refid="all"/>
         FROM `user`
-        WHERE TRUE
+        WHERE 1 = 1
           AND `id` = #{id}
         <!-- @formatter:on -->
     </select>
@@ -161,14 +154,13 @@
             <if test="username!=null"> `username` = #{username}, </if>
             <if test="mobile!=null"> `mobile` = #{mobile}, </if>
             <if test="password!=null"> `password` = #{password}, </if>
-            <if test="salt!=null"> `salt` = #{salt}, </if>
             <if test="nickName!=null"> `nick_name` = #{nickName}, </if>
             <if test="createUserUuid!=null"> `create_user_uuid` = #{createUserUuid}, </if>
             <if test="createTime!=null"> `create_time` = #{createTime}, </if>
             <if test="updateUserUuid!=null"> `update_user_uuid` = #{updateUserUuid}, </if>
             <if test="updateTime!=null"> `update_time` = #{updateTime}, </if>
         </set>
-        WHERE TRUE
+        WHERE 1 = 1
           AND `id` = #{id}
         <!-- @formatter:on -->
     </update>
@@ -181,13 +173,12 @@
             `username` = #{username},
             `mobile` = #{mobile},
             `password` = #{password},
-            `salt` = #{salt},
             `nick_name` = #{nickName},
             `create_user_uuid` = #{createUserUuid},
             `create_time` = #{createTime},
             `update_user_uuid` = #{updateUserUuid},
             `update_time` = #{updateTime}
-        WHERE TRUE
+        WHERE 1 = 1
           AND `id` = #{id}
         <!-- @formatter:on -->
     </update>
@@ -197,7 +188,7 @@
         SELECT
             <include refid="all"/>
         FROM `user`
-        WHERE TRUE
+        WHERE 1 = 1
           AND `id` IN (<foreach collection="ids" item="one" separator=",">#{one}</foreach>)
         <!-- @formatter:on -->
     </select>
@@ -207,7 +198,7 @@
         SELECT
             <include refid="all"/>
         FROM `user`
-        WHERE TRUE
+        WHERE 1 = 1
           AND `id` IN (<foreach collection="ids" item="one" separator=",">#{one}</foreach>)
         <!-- @formatter:on -->
     </select>
@@ -218,13 +209,12 @@
         SELECT
             <include refid="all"/>
         FROM `user`
-        WHERE TRUE
+        WHERE 1 = 1
           <if test="id!=null"> AND `id` = #{id} </if>
           <if test="userUuid!=null"> AND `user_uuid` = #{userUuid} </if>
           <if test="username!=null"> AND `username` = #{username} </if>
           <if test="mobile!=null"> AND `mobile` = #{mobile} </if>
           <if test="password!=null"> AND `password` = #{password} </if>
-          <if test="salt!=null"> AND `salt` = #{salt} </if>
           <if test="nickName!=null"> AND `nick_name` = #{nickName} </if>
           <if test="createUserUuid!=null"> AND `create_user_uuid` = #{createUserUuid} </if>
           <if test="createTime!=null"> AND `create_time` = #{createTime} </if>
@@ -238,7 +228,7 @@
         SELECT
             <include refid="all"/>
         FROM `user`
-        WHERE TRUE
+        WHERE 1 = 1
         <!-- @formatter:on -->
     </select>
 
@@ -251,7 +241,6 @@
             <if test="username!=null"> `username`, </if>
             <if test="mobile!=null"> `mobile`, </if>
             <if test="password!=null"> `password`, </if>
-            <if test="salt!=null"> `salt`, </if>
             <if test="nickName!=null"> `nick_name`, </if>
             <if test="createUserUuid!=null"> `create_user_uuid`, </if>
             <if test="createTime!=null"> `create_time`, </if>
@@ -264,7 +253,6 @@
             <if test="username!=null"> #{username}, </if>
             <if test="mobile!=null"> #{mobile}, </if>
             <if test="password!=null"> #{password}, </if>
-            <if test="salt!=null"> #{salt}, </if>
             <if test="nickName!=null"> #{nickName}, </if>
             <if test="createUserUuid!=null"> #{createUserUuid}, </if>
             <if test="createTime!=null"> #{createTime}, </if>
@@ -277,7 +265,6 @@
             <if test="username!=null"> `username` = #{username}, </if>
             <if test="mobile!=null"> `mobile` = #{mobile}, </if>
             <if test="password!=null"> `password` = #{password}, </if>
-            <if test="salt!=null"> `salt` = #{salt}, </if>
             <if test="nickName!=null"> `nick_name` = #{nickName}, </if>
             <if test="createUserUuid!=null"> `create_user_uuid` = #{createUserUuid}, </if>
             <if test="createTime!=null"> `create_time` = #{createTime}, </if>
@@ -287,8 +274,7 @@
         <!-- @formatter:on -->
     </insert>
 
-    <!-- [END] Any modifications may be overwritten by future code generations. -->
-
+    <!-- [END] Any modifications may be overwritten by future code generations. Allison 1875 Lot No: PG1001S-F7A47F26 -->
     <select id="getByUsernameOrMobile" resultMap="all">
         <!-- @formatter:off -->
         SELECT
@@ -298,7 +284,6 @@
            OR mobile = #{mobile}
         <!-- @formatter:on -->
     </select>
-
     <!-- Allison 1875 Lot No: QT1001S-CCA44D8E -->
     <select id='queryUser' resultMap='all'>
         <!-- @formatter:off -->
@@ -311,7 +296,6 @@
         LIMIT 1
         <!-- @formatter:on -->
     </select>
-
     <!-- Allison 1875 Lot No: QT1001S-1B2F0DC4 -->
     <select id='queryUserEx' parameterType='com.spldeolin.satisficing.security.service.javabean.cond.QueryUserCond'
         resultType='com.spldeolin.satisficing.security.service.javabean.record.QueryUserExRecord'>
@@ -325,38 +309,38 @@
             t1.`create_time` AS createTime,
             t1.`update_user_uuid` AS createUserUuid,
             t1.`update_time` AS updateTime,
-            GROUP_CONCAT(REPLACE(t3.role_name, ',', '\\,')) AS roleNames
+            GROUP_CONCAT(REPLACE(t3.role_name, ',', '\\,')) AS roleNames,
+            GROUP_CONCAT(REPLACE(t5.department_name, ',', '\\,')) AS departmentNames
         FROM
             `user` t1
         LEFT JOIN user2role t2 ON t1.id = t2.user_id
         LEFT JOIN role t3 ON t2.role_id = t3.id
+        LEFT JOIN user2department t4 ON t1.id = t4.user_id
+        LEFT JOIN department t5 ON t4.department_id = t5.id
         WHERE TRUE
         <if test="username != null and username != ''">
-            AND `username` LIKE CONCAT('%', #{username}, '%')
+            AND t1.`username` LIKE CONCAT('%', #{username}, '%')
         </if>
         <if test="mobile != null and mobile != ''">
-            AND `mobile` LIKE CONCAT('%', #{mobile}, '%')
+            AND t1.`mobile` LIKE CONCAT('%', #{mobile}, '%')
         </if>
         <if test="nickName != null and nickName != ''">
-            AND `nick_name` LIKE CONCAT('%', #{nickName}, '%')
+            AND t1.`nick_name` LIKE CONCAT('%', #{nickName}, '%')
         </if>
         <if test="createTime != null">
-            AND `create_time` >= #{createTime}
+            AND t1.`create_time` >= #{createTime}
         </if>
         <if test="createTimeEx != null">
-            AND `create_time` &lt;= #{createTimeEx}
+            AND t1.`create_time` &lt;= #{createTimeEx}
         </if>
-        <if test="ids != null">
-            <if test="ids.size() > 0">
-                AND `id` IN (<foreach collection='ids' item='one' separator=','>#{one}</foreach>)
-            </if>
-            <if test="ids.size() == 0">
-                AND FALSE
-            </if>
+        <if test="roleId != null">
+            AND t2.role_id = #{roleId}
+        </if>
+        <if test="departmentId != null">
+            AND t4.department_id = #{departmentId}
         </if>
         <!-- @formatter:on -->
     </select>
-
     <!-- Allison 1875 Lot No: QT1001S-0C147D98 -->
     <select id='queryUserEx2' resultMap='all'>
         <!-- @formatter:off -->

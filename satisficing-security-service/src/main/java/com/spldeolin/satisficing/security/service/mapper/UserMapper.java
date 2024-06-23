@@ -20,6 +20,7 @@ public interface UserMapper {
      * 插入
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     int insert(UserEntity entity);
 
@@ -27,6 +28,7 @@ public interface UserMapper {
      * 批量插入
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     int batchInsert(@Param("entities") List<UserEntity> entities);
 
@@ -34,6 +36,7 @@ public interface UserMapper {
      * 批量插入，为null的属性会被作为null插入
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     int batchInsertEvenNull(@Param("entities") List<UserEntity> entities);
 
@@ -41,6 +44,7 @@ public interface UserMapper {
      * 批量根据ID更新数据
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     int batchUpdate(@Param("entities") List<UserEntity> entities);
 
@@ -48,6 +52,7 @@ public interface UserMapper {
      * 批量根据ID更新数据，为null对应的字段会被更新为null
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     int batchUpdateEvenNull(@Param("entities") List<UserEntity> entities);
 
@@ -55,13 +60,15 @@ public interface UserMapper {
      * 根据ID查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
-    UserEntity queryById(Long id);
+    com.spldeolin.satisficing.security.service.entity.UserEntity queryById(Long id);
 
     /**
      * 根据ID更新数据，忽略值为null的属性
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     int updateById(UserEntity entity);
 
@@ -69,6 +76,7 @@ public interface UserMapper {
      * 根据ID更新数据，为null属性对应的字段会被更新为null
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     int updateByIdEvenNull(UserEntity entity);
 
@@ -76,6 +84,7 @@ public interface UserMapper {
      * 根据多个ID查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     List<UserEntity> queryByIds(@Param("ids") List<Long> ids);
 
@@ -83,6 +92,7 @@ public interface UserMapper {
      * 根据多个ID查询，并以ID作为key映射到Map
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     @MapKey("id")
     Map<Long, UserEntity> queryByIdsEachId(@Param("ids") List<Long> ids);
@@ -91,6 +101,7 @@ public interface UserMapper {
      * 根据实体内的属性查询
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     List<UserEntity> queryByEntity(UserEntity entity);
 
@@ -98,6 +109,7 @@ public interface UserMapper {
      * 获取全部
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     List<UserEntity> listAll();
 
@@ -105,6 +117,7 @@ public interface UserMapper {
      * 尝试插入，若指定了id并存在，则更新，即INSERT ON DUPLICATE KEY UPDATE
      * <p>
      * <p>Any modifications may be overwritten by future code generations.
+     * <p>Allison 1875 Lot No: PG1001S-F7A47F26
      */
     int insertOrUpdate(UserEntity entity);
 

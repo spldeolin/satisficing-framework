@@ -13,6 +13,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LoginByCodeRespDto {
 
+    /**
+     * 登录凭证
+     */
     String token;
 
 }

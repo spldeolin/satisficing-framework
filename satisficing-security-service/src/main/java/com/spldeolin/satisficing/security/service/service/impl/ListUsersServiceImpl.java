@@ -9,8 +9,6 @@ import com.spldeolin.satisficing.security.service.javabean.cond.QueryUserCond;
 import com.spldeolin.satisficing.security.service.javabean.record.QueryUserExRecord;
 import com.spldeolin.satisficing.security.service.javabean.req.ListUsersReqDto;
 import com.spldeolin.satisficing.security.service.javabean.resp.ListUsersRespDto;
-import com.spldeolin.satisficing.security.service.mapper.RoleMapper;
-import com.spldeolin.satisficing.security.service.mapper.User2roleMapper;
 import com.spldeolin.satisficing.security.service.mapper.UserMapper;
 import com.spldeolin.satisficing.security.service.service.ListUsersService;
 import com.spldeolin.satisficing.service.util.PageUtils;
@@ -30,25 +28,16 @@ public class ListUsersServiceImpl implements ListUsersService {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    private User2roleMapper user2roleMapper;
-
-    @Autowired
-    private RoleMapper roleMapper;
-
     @Override
     public PageInfo<ListUsersRespDto> listUsers(ListUsersReqDto req) {
-        List<Long> userIds = null;
-        if (req.getRoleId() != null) {
-            userIds = user2roleMapper.queryUserIds(req.getRoleId());
-        }
         final QueryUserCond queryUserCond = new QueryUserCond();
         queryUserCond.setUsername(req.getUsername());
         queryUserCond.setMobile(req.getMobile());
         queryUserCond.setNickName(req.getNickName());
         queryUserCond.setCreateTime(TimeUtils.toggleToDayStart(req.getCreateTimeLeft()));
         queryUserCond.setCreateTimeEx(TimeUtils.toggleToDayEnd(req.getCreateTimeRight()));
-        queryUserCond.setIds(userIds);
+        queryUserCond.setRoleId(req.getRoleId());
+        queryUserCond.setDepartmentId(req.getDepartmentId());
         List<QueryUserExRecord> users = userMapper.queryUserEx(queryUserCond);
         if (users.isEmpty()) {
             return new PageInfo<>(Lists.newArrayList());
@@ -68,8 +57,10 @@ public class ListUsersServiceImpl implements ListUsersService {
             dto.setUsername(user.getUsername());
             dto.setMobile(user.getMobile());
             dto.setNickName(user.getNickName());
-            dto.setCreateTime(user.getCreateTime());
             dto.setRoleNames(TextUtils.splitAndUnescapeComma(user.getRoleNames()));
+            dto.setDepartmentNames(TextUtils.splitAndUnescapeComma(user.getDepartmentNames()));
+            dto.setCreateTime(user.getCreateTime());
+            dto.setUpdateTime(user.getUpdateTime());
             dtos.add(dto);
         }
 

@@ -22,6 +22,8 @@ import com.spldeolin.satisficing.security.service.service.RevokeRoleToUserServic
 import com.spldeolin.satisficing.security.service.service.UpdateRoleService;
 
 /**
+ * 角色管理
+ *
  * @author Deolin 2024-06-19
  */
 @RestController
@@ -47,7 +49,6 @@ public class RoleController {
 
     /**
      * 角色列表
-     * <p>Allison 1875 Lot No: HT1001S-858BE8C1
      */
     @PostMapping("listRoles")
     public RequestResult<PageInfo<ListRolesRespDto>> listRoles(@RequestBody @Valid ListRolesReqDto req) {
@@ -56,7 +57,6 @@ public class RoleController {
 
     /**
      * 创建角色
-     * <p>Allison 1875 Lot No: HT1001S-79B68D13
      */
     @PostMapping("createRole")
     public RequestResult<Void> createRole(@RequestBody @Valid CreateRoleReqDto req) {
@@ -66,7 +66,6 @@ public class RoleController {
 
     /**
      * 更新角色
-     * <p>Allison 1875 Lot No: HT1001S-F03AE4A1
      */
     @PostMapping("updateRole")
     public RequestResult<Void> updateRole(@RequestBody @Valid UpdateRoleReqDto req) {
@@ -76,7 +75,6 @@ public class RoleController {
 
     /**
      * 删除角色
-     * <p>Allison 1875 Lot No: HT1001S-774D2245
      */
     @PostMapping("deleteRole")
     public RequestResult<Void> deleteRole(@RequestBody @Valid DeleteRoleReqDto req) {
@@ -86,7 +84,6 @@ public class RoleController {
 
     /**
      * 将角色授予用户
-     * <p>Allison 1875 Lot No: HT1001S-ABAAC57D
      */
     @PostMapping("grantRoleToUser")
     public RequestResult<Void> grantRoleToUser(@RequestBody @Valid GrantRoleToUserReqDto req) {
@@ -96,7 +93,6 @@ public class RoleController {
 
     /**
      * 将角色取消授予用户
-     * <p>Allison 1875 Lot No: HT1001S-9B6CC6AB
      */
     @PostMapping("revokeRoleToUser")
     public RequestResult<Void> revokeRoleToUser(@RequestBody @Valid RevokeRoleToUserReqDto req) {

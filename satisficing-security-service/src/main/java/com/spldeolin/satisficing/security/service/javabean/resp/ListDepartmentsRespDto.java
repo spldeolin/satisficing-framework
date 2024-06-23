@@ -1,51 +1,41 @@
 package com.spldeolin.satisficing.security.service.javabean.resp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldDefaults;
 
 /**
- * <p>Allison 1875 Lot No: HT1001S-77216521
- *
- * @author Deolin 2024-06-03
+ * @author Allison 1875 2024-06-23
  */
 @Data
 @Accessors(chain = true)
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
-public class ListUsersRespDto {
+public class ListDepartmentsRespDto {
 
     /**
-     * 用户UUID
+     * 部门ID
      */
-    String userUuid;
+    @JsonSerialize(using = ToStringSerializer.class)
+    Long departmentId;
 
     /**
-     * 用户名
+     * 部门名称
      */
-    String username;
+    String departmentName;
 
     /**
-     * 手机
+     * 部门全称
      */
-    String mobile;
+    String departmentFullName;
 
     /**
-     * 昵称
+     * 描述
      */
-    String nickName;
-
-    /**
-     * 用户被授予的角色名称
-     */
-    List<String> roleNames;
-
-    /**
-     * 用户所处的部门名称
-     */
-    List<String> departmentNames;
+    String description;
 
     /**
      * 创建时间

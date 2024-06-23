@@ -6,18 +6,17 @@ import lombok.experimental.Accessors;
 import lombok.experimental.FieldDefaults;
 
 /**
- * 角色
- * <p>role
+ * 用户与部门的关联关系
+ * <p>user2department
  * <p>
  * <p>Any modifications may be overwritten by future code generations.
- * <p>Allison 1875 Lot No: PG1001S-74859B7D
  *
- * @author Allison 1875 2024-06-21
+ * @author Allison 1875 2024-06-23
  */
 @Data
 @Accessors(chain = true)
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
-public class RoleEntity {
+public class User2departmentEntity {
 
     /**
      * 主键
@@ -27,19 +26,18 @@ public class RoleEntity {
     Long id;
 
     /**
-     * 角色名
-     * <p>role_name
-     * <p>长度：255
+     * 用户ID
+     * <p>user_id
      * <p>不能为null
      */
-    String roleName;
+    Long userId;
 
     /**
-     * 描述
-     * <p>description
-     * <p>长度：512
+     * 部门ID
+     * <p>department_id
+     * <p>不能为null
      */
-    String description;
+    Long departmentId;
 
     /**
      * 插入数据时登录者的userUuid。若数据并非登录者插入的，值为-1
@@ -74,4 +72,5 @@ public class RoleEntity {
      * <p>默认：CURRENT_TIMESTAMP
      */
     LocalDateTime updateTime;
+
 }

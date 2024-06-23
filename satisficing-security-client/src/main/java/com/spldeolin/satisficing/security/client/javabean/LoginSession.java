@@ -24,10 +24,19 @@ public class LoginSession implements Serializable {
 
     private static final ThreadLocal<LoginSession> ctx = new TransmittableThreadLocal<>();
 
+    /**
+     * 登录凭证
+     */
     String token;
 
+    /**
+     * 登录者的用户UUID
+     */
     String loginUserUuid;
 
+    /**
+     * 登录者的用户名
+     */
     String loginUserName;
 
     public static void setCurrent(LoginSession loginSession) {
